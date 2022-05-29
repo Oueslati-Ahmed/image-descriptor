@@ -1,0 +1,50 @@
+<div class="main-container">
+  <span class="title">Image Descriptor</span>
+
+  <div class="file-options">
+    <input type="file" class="file-upload" (change)="onFileChange($event)">
+
+    <mat-button-toggle-group class="languages">
+      <mat-button-toggle class="language-option" value="english">English</mat-button-toggle>
+      <mat-button-toggle class="language-option" value="french">French</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <button mat-raised-button class="detect-button">Detect</button>
+  </div>
+
+
+  <div class="preview">
+    <span *ngIf="isNoneFileType()" class="preview-text">Choose file to continue</span>
+    <span *ngIf="isUnsupportedFileType()" class="preview-text">Unsupported File Type</span>
+    <img *ngIf="isImageFileType()" class="image-preview" [src]="imageUrl" alt="image preview">
+    <pdf-viewer *ngIf="isPdfFileType()" [src]="pdfSrc"
+                class="pdf-preview"
+                [render-text]="true"
+                [original-size]="false">
+
+    </pdf-viewer>
+  </div>
+
+  <span class="divider"></span>
+
+  <ngx-audio-player [playlist]="audio" [displayRepeatControls]="false" [displayPlaylist]="false"
+                    [displayTitle]="false"></ngx-audio-player>
+
+  <div class="options">
+    <div class="option">
+      <h3>Playback Type</h3>
+      <mat-button-toggle-group [(ngModel)]="playbackType">
+        <mat-button-toggle value="male">Male</mat-button-toggle>
+        <mat-button-toggle value="female">Female</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="option">
+      <h3>Playback Speed: {{playbackSpeed}}</h3>
+      <mat-slider [(ngModel)]="playbackSpeed" class="voice-speed-slider" min="-5" max="5" value="0"></mat-slider>
+    </div>
+  </div>
+
+
+</div>
+

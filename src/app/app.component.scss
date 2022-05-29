@@ -1,0 +1,101 @@
+.file-upload {
+  color: whitesmoke;
+  padding: 0.5em;
+  border: 1px solid whitesmoke;
+  align-self: center;
+}
+
+.title {
+  color: white;
+  font-weight: normal;
+  font-size: 25px;
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+.main-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  color: whitesmoke;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: white;
+  width: 50vh;
+  height: 50vh;
+}
+
+.image-preview {
+  align-self: center;
+  max-height: 50vh;
+  max-width: 50vh;
+}
+
+.pdf-preview {
+  height: 100%;
+  width: 100%;
+}
+
+.ng2-pdf-viewer-container {
+  overflow-x: hidden !important;
+}
+
+.divider {
+  margin-bottom: 40px;
+  margin-top: 40px;
+  width: 50%;
+  border-top: 3px solid #bbb;
+  border-radius: 5px;
+}
+
+.options {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.option {
+  text-align-last: center;
+}
+
+.detect-button {
+  background-color: indianred;
+  color: white;
+  height: 36px;
+}
+
+.preview-text {
+  color: black;
+  align-self: center
+}
+
+.file-options {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.mat-button-toggle-label-content {
+  line-height: 36px !important;
+}
+
+.mat-accent .mat-slider-track-fill {
+  background-color: whitesmoke !important;
+}
+
+.mat-slider-thumb-label {
+  background-color: whitesmoke !important;
+
+}
+
+.mat-slider-thumb {
+  background-color: whitesmoke !important;
+}

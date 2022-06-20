@@ -1,7 +1,14 @@
 .file-upload {
-  color: whitesmoke;
+  color: white;
   padding: 0.5em;
-  border: 1px solid whitesmoke;
+  border: 1px solid white;
+  align-self: center;
+}
+
+.audio-player {
+  color: white;
+  padding-right: 8px;
+  border: 1px solid white;
   align-self: center;
 }
 
@@ -10,31 +17,35 @@
   font-weight: normal;
   font-size: 25px;
   text-decoration: underline;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .main-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  color: whitesmoke;
+  color: white;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.pages-input {
+  height: 30px;
 }
 
 .preview {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: white;
-  width: 50vh;
-  height: 50vh;
+  width: 72vh;
+  height: 72vh;
 }
 
 .image-preview {
   align-self: center;
-  max-height: 50vh;
-  max-width: 50vh;
+  max-height: 72vh;
+  max-width: 72vh;
 }
 
 .pdf-preview {
@@ -47,15 +58,13 @@
 }
 
 .divider {
-  margin-bottom: 40px;
-  margin-top: 40px;
+  margin-bottom: 20px;
   width: 50%;
-  border-top: 3px solid #bbb;
+  border-top: 3px solid white;
   border-radius: 5px;
 }
 
 .options {
-  margin-top: 40px;
   display: flex;
   justify-content: center;
   gap: 60px;
@@ -80,7 +89,7 @@
   margin: 20px;
   display: flex;
   justify-content: center;
-  gap: 60px;
+  gap: 15px;
 }
 
 .mat-button-toggle-label-content {
@@ -88,14 +97,56 @@
 }
 
 .mat-accent .mat-slider-track-fill {
-  background-color: whitesmoke !important;
+  background-color: white !important;
 }
 
 .mat-slider-thumb-label {
-  background-color: whitesmoke !important;
+  background-color: white !important;
 
 }
 
 .mat-slider-thumb {
-  background-color: whitesmoke !important;
+  background-color: white !important;
+}
+
+.language-option, .playback-type-option {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.mat-accent .mat-slider-track-background {
+  background-color: white !important;
+}
+
+.mat-accent .mat-slider-track-fill {
+  background-color: indianred !important;
+}
+
+.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+  color: white;
+  background-color: indianred;
+  border-color: indianred;
+}
+
+.speed-slider {
+  margin-left: 10px;
+}
+
+mat-card {
+  height: 48px;
+}
+
+.mat-accent .mat-slider-thumb-label-text {
+  color: indianred;
+}
+
+.mat-button-disabled {
+  background-color: transparent !important;
+  color: gray !important;
+  border: 1px solid gray !important;
+}
+
+.audio-player .mat-button-disabled {
+  border: none !important;
 }

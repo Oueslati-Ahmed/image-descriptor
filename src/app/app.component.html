@@ -1,15 +1,20 @@
 <div class="main-container">
   <span class="title">Image Descriptor</span>
-
   <div class="file-options">
     <input type="file" class="file-upload" (change)="onFileChange($event)">
-
-    <mat-button-toggle-group class="languages">
+    <mat-button-toggle-group class="languages" [(ngModel)]="language">
       <mat-button-toggle class="language-option" value="english">English</mat-button-toggle>
       <mat-button-toggle class="language-option" value="french">French</mat-button-toggle>
     </mat-button-toggle-group>
 
-    <button mat-raised-button class="detect-button">Detect</button>
+    <mat-button-toggle-group [(ngModel)]="voiceGender">
+      <mat-button-toggle class="playback-type-option" value="female">Female</mat-button-toggle>
+      <mat-button-toggle class="playback-type-option" value="male">Male</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <input [disabled]="!isPdfFileType()" class="pages-input" [(ngModel)]="pages" placeholder="Pages: 1-3, 5, 7">
+
+    <button [disabled]="!file" mat-raised-button class="detect-button" (click)="detect()">Detect</button>
   </div>
 
 
@@ -17,34 +22,58 @@
     <span *ngIf="isNoneFileType()" class="preview-text">Choose file to continue</span>
     <span *ngIf="isUnsupportedFileType()" class="preview-text">Unsupported File Type</span>
     <img *ngIf="isImageFileType()" class="image-preview" [src]="imageUrl" alt="image preview">
-    <pdf-viewer *ngIf="isPdfFileType()" [src]="pdfSrc"
+
+    <pdf-viewer (pageChange)="pdfPage = $event" *ngIf="isPdfFileType()" [src]="pdfSrc"
                 class="pdf-preview"
                 [render-text]="true"
-                [original-size]="false">
-
+                [original-size]="false" [show-borders]="true">
     </pdf-viewer>
   </div>
+  <span style="height: 20px;position: relative; right: -340px; margin-top: 2px">{{isPdfFileType() ? pdfPage : ""}}</span>
 
   <span class="divider"></span>
 
-  <ngx-audio-player [playlist]="audio" [displayRepeatControls]="false" [displayPlaylist]="false"
-                    [displayTitle]="false"></ngx-audio-player>
+  <div style="display: flex; align-items: center; gap: 20px">
+    <span class="audio-player">
+      <button (click)="skipAudio(-10)" mat-icon-button [disabled]="!audioLoaded()">
+      <mat-icon>fast_rewind</mat-icon>
+    </button>
+    <button *ngIf="audio.paused" (click)="togglePlayPause()" mat-icon-button [disabled]="!audioLoaded()">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    <button *ngIf="!audio.paused" (click)="togglePlayPause()" mat-icon-button [disabled]="!audioLoaded()">
+      <mat-icon>pause</mat-icon>
+    </button>
+    <button (click)="skipAudio(10)" mat-icon-button [disabled]="!audioLoaded()">
+      <mat-icon>fast_forward</mat-icon>
+    </button>
 
-  <div class="options">
-    <div class="option">
-      <h3>Playback Type</h3>
-      <mat-button-toggle-group [(ngModel)]="playbackType">
-        <mat-button-toggle value="male">Male</mat-button-toggle>
-        <mat-button-toggle value="female">Female</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
+    <mat-slider #slider class="audio-slider"
+                [disabled]="!audioLoaded()"
+                step="1"
+                (input)="setAudioTime($event)"
+                thumbLabel [displayWith]="formatLabel"
+                [value]="audio.currentTime" min="0"
+                [max]="audio.duration"
+    ></mat-slider>
+      {{formatLabel(slider.value)}}/{{audio.duration ? formatLabel(audio.duration) : "0:00"}}
+    </span>
 
-    <div class="option">
-      <h3>Playback Speed: {{playbackSpeed}}</h3>
-      <mat-slider [(ngModel)]="playbackSpeed" class="voice-speed-slider" min="-5" max="5" value="0"></mat-slider>
+
+    <div class="options">
+      <div class="option">
+        <h3 style="margin: 0; display: inline">Speed: </h3><span
+        style="color: indianred"><b>{{playbackSpeed}}</b></span>
+        <mat-slider [(ngModel)]="playbackSpeed"
+                    (valueChange)="onAudioSpeedChange($event)"
+                    class="speed-slider"
+                    min="-5"
+                    max="5"
+                    value="0"
+        ></mat-slider>
+      </div>
     </div>
   </div>
-
 
 </div>
 
